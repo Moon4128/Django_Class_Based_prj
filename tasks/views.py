@@ -19,3 +19,8 @@ class TaskCreateView(CreateView):
     template_name = 'tasks/task_create.html'
     form_class = TaskForm
     #success_url = '/'
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'tasks/task_delete.html'
+    #success_url = '/'
