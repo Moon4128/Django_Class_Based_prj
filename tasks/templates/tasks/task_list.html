@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Task List</h1>
-<a href="#">Create new task</a>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Task List</h1>
+        <a href="#" class="btn btn-primary">Create new task</a>
+    </div>
 
-<ul>
-    {% for task in tasks %}
-        <li>
-            <a href="{% url 'tasks:task-detail' pk=task.pk %}">{{ task.title }}</a>
-            {{task.status}} {{task.priority}}
-        </li>
-    {% empty %}
-    <li>You have no tasks</li>
-    {% endfor %}
-</ul>
-{%endblock%}
+    <ul class="list-group">
+        {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{% url 'tasks:task-detail' pk=task.pk %}" class="text-decoration-none fw-semibold">{{ task.title }}</a>
+                </div>
+                <div class="text-end small text-muted">
+                    {{ task.status }} · {{ task.priority }}
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-muted">You have no tasks</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
